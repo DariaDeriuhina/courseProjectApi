@@ -8,25 +8,25 @@ jobs:
       - checkout
       - run:
           name: Get access
-          command: cd CypressApi && chmod 777 /root
+          command: chmod 777 /root
       - run:
           name: Update dependencies
-          command: cd CypressApi && apt update && apt upgrade -y
+          command: apt update && apt upgrade -y
       - run:
           name: Install libs
-          command: cd CypressApi && apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb -y
+          command: apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb -y
       - run:
           name: Update cypress
-          command: cd CypressApi && npm install cypress --save-dev
+          command: npm install cypress --save-dev
       - run:
           name: install all
-          command: cd CypressApi && npm i
+          command: npm i
       - run:
           name: run tests
-          command: cd CypressApi && npm run cy:run || true
+          command: npm run cy:run || true
       - run:
           name: generate report
-          command: cd CypressApi && npm run allure:report
+          command: npm run allure:report
       - store_artifacts:
           path: CypressApi/allure-report
           destination: CypressReport
